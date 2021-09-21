@@ -13,8 +13,8 @@ func spawn_turrets(player: Node, turret_container:Node):
 		
 		var border_distance_vector = Vector2(border_distance, -border_distance)
 		
-		var x_range = Vector2(0, get_viewport().size.x) + border_distance_vector
-		var y_range = Vector2(0, get_viewport().size.y - (get_viewport().size.y - player.global_position.y)) + border_distance_vector
+		var x_range = Vector2(0, get_viewport().get_size_override().x) + border_distance_vector
+		var y_range = Vector2(0, get_viewport().get_size_override().y - (get_viewport().get_size_override().y - player.global_position.y)) + border_distance_vector
 
 		var random_x = randi() % int(x_range[1] - x_range[0]) + 1 + x_range[0] 
 		var random_y =  randi() % int(y_range[1]-y_range[0]) + 1 + y_range[0]
