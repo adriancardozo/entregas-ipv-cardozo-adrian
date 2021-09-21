@@ -14,7 +14,6 @@ func set_projectile_container(container: Node):
 	projectile_container = container
 
 func _physics_process(delta):
-	
 	var mouse_position: Vector2 = get_global_mouse_position()
 	cannon.look_at(mouse_position)
 	

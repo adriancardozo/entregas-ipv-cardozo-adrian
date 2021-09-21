@@ -16,8 +16,9 @@ func set_starting_values(starting_position: Vector2, direction: Vector2):
 	set_physics_process(true)
 
 func _physics_process(delta):
+	if _is_over_viewport():
+		emit_signal("delete_requested", self)
 	position += direction*speed*delta
 
-
-func _on_Timer_timeout():
-	emit_signal("delete_requested", self)
+func _is_over_viewport():
+	return global_position.x <= 0 or global_position.x >= get_viewport().size.x or  global_position.y <= 0 or global_position.y >= get_viewport().size.y
