@@ -14,13 +14,20 @@ func set_projectile_container(container: Node):
 	projectile_container = container
 
 func _physics_process(delta):
+	_update_cannon_position()
+	_process_shots()
+	_update_position(delta)
+	
+func _update_cannon_position():
 	var mouse_position: Vector2 = get_global_mouse_position()
 	cannon.look_at(mouse_position)
 	
+func _process_shots():
 	if Input.is_action_just_pressed("fire"):
 		cannon.fire()
 		
-	var direction:int = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
+func _update_position(delta):
+	var direction: int = int(Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left"))
 	if direction != 0:
 		velocity.x = clamp(velocity.x + (direction * ACCELERATION), -H_SPEED_LIMIT, H_SPEED_LIMIT)
 	else:

@@ -36,3 +36,4 @@ position = Vector2( 413.003, 395.272 )
 script = ExtResource( 6 )
 turret_scene = ExtResource( 5 )
 turrets = 3
+border_distance = 50

@@ -21,4 +21,5 @@ func _physics_process(delta):
 	position += direction*speed*delta
 
 func _is_over_viewport():
-	return global_position.x <= 0 or global_position.x >= get_viewport().get_size_override().x or  global_position.y <= 0 or global_position.y >= get_viewport().get_size_override().y
+	var viewport_size = get_viewport().get_size_override()
+	return global_position.x <= 0 or global_position.x >= viewport_size.x or  global_position.y <= 0 or global_position.y >= viewport_size.y
