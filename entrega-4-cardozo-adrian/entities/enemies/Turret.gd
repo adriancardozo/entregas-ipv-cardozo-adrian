@@ -1,19 +1,31 @@
 extends KinematicBody2D
+class_name Turret
 
 onready var fire_position = $FirePosition
 onready var fire_timer = $FireTimer
+onready var idle_timer: Timer = $IdleTimer
 onready var raycast = $FirePosition/RayCast2D
 
 onready var detection_area:Area2D = $DetectionArea
 
 export (PackedScene) var projectile_scene
+export (Vector2) var wandering_range: Vector2
+export (float) var speed: float = 30
+export (float) var max_speed: float = 50
 
 var target
 var projectile_container
 
+var pathfinding: PathfindAstar
+
+var path: Array = []
+var next_point = null
+var velocity: Vector2 = Vector2.ZERO
+
 func _ready():
 	fire_timer.connect("timeout", self, "fire")
 	set_physics_process(false)
+	idle_timer.start()
 
 func initialize(container, turret_pos, projectile_container):
 	container.add_child(self)
@@ -35,8 +47,21 @@ func _physics_process(delta):
 			fire_timer.start()
 	elif !fire_timer.is_stopped():
 		fire_timer.stop()
-
-
+	if !path.empty():
+		next_point = path.front()
+		path.pop_front()
+		while !path.empty() && abs(position.x - next_point.x) < 2:
+			next_point = path.front()
+			path.pop_front()
+		if abs(position.x - next_point.x) > 2:
+			velocity.x = clamp(velocity.x + (next_point - position).normalized().x * speed, -max_speed, max_speed)
+		else:
+			path.pop_front()
+	if path.empty() && (next_point == null or abs(position.x - next_point.x) < 2):
+		velocity.x = 0
+	velocity.y += 10
+	velocity = move_and_slide(velocity, Vector2.UP)
+ 
 func notify_hit(_amount):
 	call_deferred("_remove")
 
@@ -60,3 +85,8 @@ func _on_DetectionArea_body_exited(body):
 		target = null
 		set_physics_process(false)
 
+
+
+func _on_IdleTimer_timeout():
+	var point: Vector2 = Vector2(rand_range(-wandering_range.x, wandering_range.x), rand_range(-wandering_range.y, wandering_range.y))
+	path = pathfinding.get_simple_path(global_position, global_position + point)
