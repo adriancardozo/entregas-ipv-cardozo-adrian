@@ -12,6 +12,7 @@ func notify_body_exited(body):
 func enter():
 	parent.velocity.x = 0
 	parent.call_deferred("fire")
+	parent._play_animation("fire")
 	fire_timer.start()
 
 
@@ -21,6 +22,8 @@ func exit():
 
 func update(delta):
 	var can_see_target:bool = parent._can_see_target()
+	if can_see_target:
+		parent.body.flip_h = parent.target.global_position.x < parent.global_position.x
 	if fire_timer.is_stopped() && can_see_target:
 		parent.fire()
 		fire_timer.start()

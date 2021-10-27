@@ -14,6 +14,7 @@ func _ready():
 
 func enter():
 	dash_timer.start(dash_time)
+	parent._play_animation("dash")
 
 
 func exit():

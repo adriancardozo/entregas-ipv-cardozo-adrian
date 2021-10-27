@@ -10,7 +10,9 @@ func notify_body_entered(body):
 
 
 func enter():
+	parent.velocity.x = 0
 	idle_timer.start()
+	parent._play_animation("idle")
 
 
 func exit():

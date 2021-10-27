@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://enviroment/objects/MovingPlatform.gd" type="Script" id=1]
-[ext_resource path="res://assets/textures/brown_square.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/tileset/platform.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 63.5323, 19.3518 )
@@ -16,8 +16,8 @@ script = ExtResource( 1 )
 motion/sync_to_physics = true
 
 [node name="Sprite" type="Sprite" parent="Platform"]
-position = Vector2( 0.42455, 0.0449598 )
-scale = Vector2( 0.560501, 0.175936 )
+position = Vector2( 0.240967, 0.298431 )
+scale = Vector2( 0.458188, 0.418018 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Platform"]

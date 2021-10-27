@@ -1,5 +1,7 @@
 extends "res://entities/AbstractState.gd"
 
+func enter():
+	parent._play_animation("idle")
 
 func handle_input(event:InputEvent):
 	if event.is_action_pressed("move_left") || event.is_action_pressed("move_right"):

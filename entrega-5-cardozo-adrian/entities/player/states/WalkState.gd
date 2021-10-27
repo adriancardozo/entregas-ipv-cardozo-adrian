@@ -1,5 +1,7 @@
 extends "res://entities/AbstractState.gd"
 
+func enter():
+	parent._play_animation("walk")
 
 func handle_input(event:InputEvent):
 	if event.is_action_pressed("jump") && parent.is_on_floor():

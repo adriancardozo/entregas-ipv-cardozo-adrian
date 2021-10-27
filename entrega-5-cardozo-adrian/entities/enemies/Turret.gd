@@ -7,6 +7,9 @@ onready var detection_area = $DetectionArea
 
 onready var state_machine = $StateMachine
 
+onready var body: AnimatedSprite = $Body
+onready var animation_player: AnimationPlayer = $AnimationPlayer
+
 export (PackedScene) var projectile_scene
 
 var target
@@ -31,6 +34,7 @@ func fire():
 		var proj_instance = projectile_scene.instance()
 		if projectile_container == null:
 			projectile_container = get_parent()
+		_play_animation("fire")
 		proj_instance.initialize(projectile_container, fire_position.global_position, fire_position.global_position.direction_to(target.global_position))
 
 func _can_see_target()->bool:
@@ -48,6 +52,10 @@ func apply_movement():
 
 func notify_hit(amount):
 	state_machine.notify_hit(amount)
+
+func _play_animation(anim_name: String):
+	animation_player.stop()
+	animation_player.play(anim_name)
 
 
 func _remove():

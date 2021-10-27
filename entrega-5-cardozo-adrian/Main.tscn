@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/textures/floor.png" type="Texture" id=2]
 [ext_resource path="res://Main.gd" type="Script" id=3]
 [ext_resource path="res://entities/enemies/Turret.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/textures/background.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/background/Layer_0002_7.png" type="Texture" id=5]
 [ext_resource path="res://enviroment/objects/Platform.tscn" type="PackedScene" id=6]
 [ext_resource path="res://enviroment/objects/Ramp.tscn" type="PackedScene" id=7]
 [ext_resource path="res://entities/SpawnManager.gd" type="Script" id=8]
@@ -170,7 +170,7 @@ speed = 300.0
 
 [node name="MovingPlatform3" parent="Environment" instance=ExtResource( 13 )]
 position = Vector2( 5554.28, 432.527 )
-move_to = Vector2( -1450, 0 )
+move_to = Vector2( -1153.3, 0 )
 speed = 300.0
 
 [node name="Trophy" parent="Environment" instance=ExtResource( 12 )]

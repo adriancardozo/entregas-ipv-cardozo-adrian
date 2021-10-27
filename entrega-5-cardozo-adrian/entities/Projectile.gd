@@ -12,8 +12,12 @@ func initialize(container, spawn_position:Vector2, direction:Vector2):
 	container.add_child(self)
 	self.direction = direction
 	global_position = spawn_position
+	_animate_projectile()
 	lifetime_timer.connect("timeout", self, "_on_lifetime_timer_timeout")
 	lifetime_timer.start()
+
+func _animate_projectile():
+	pass
 
 func _physics_process(delta:float):
 	position += direction * VELOCITY * delta

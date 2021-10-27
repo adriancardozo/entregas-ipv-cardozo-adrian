@@ -6,6 +6,7 @@ var jumps:int = 0
 
 
 func enter():
+	parent._play_animation("jump")
 	parent.snap_vector = Vector2.ZERO
 	parent.velocity.y = -parent.jump_speed
 
@@ -18,6 +19,7 @@ func handle_input(event:InputEvent):
 	if event.is_action_pressed("dash") && parent.move_direction != 0:
 		emit_signal("finished", "dash")
 	elif event.is_action_pressed("jump") && jumps < jumps_limit:
+		parent._play_animation("jump")
 		jumps += 1
 		parent.velocity.y = -parent.jump_speed
 
