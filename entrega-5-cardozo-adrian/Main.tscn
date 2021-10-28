@@ -430,10 +430,10 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 32, 64, 32, 32, 0, 32 )
 } ]
 9/z_index = 0
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=52]
 extents = Vector2( 588.857, 29.8909 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=53]
 extents = Vector2( 274.258, 29.8909 )
 
 [node name="Main" type="Node"]
@@ -783,14 +783,14 @@ position = Vector2( 1452.54, 186.815 )
 position = Vector2( 5290.39, 1183.8 )
 
 [node name="CollisionShape2D" parent="Environment/hurt_zone" index="0"]
-shape = SubResource( 3 )
+shape = SubResource( 52 )
 
 [node name="hurt_zone2" parent="Environment" instance=ExtResource( 10 )]
 position = Vector2( 84.5299, 1067.06 )
 rotation = 0.980391
 
 [node name="CollisionShape2D" parent="Environment/hurt_zone2" index="0"]
-shape = SubResource( 4 )
+shape = SubResource( 53 )
 
 [node name="MovingPlatform" parent="Environment" instance=ExtResource( 13 )]
 position = Vector2( 4818.62, 1048.21 )
