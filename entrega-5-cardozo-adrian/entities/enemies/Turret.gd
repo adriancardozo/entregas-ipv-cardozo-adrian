@@ -34,7 +34,6 @@ func fire():
 		var proj_instance = projectile_scene.instance()
 		if projectile_container == null:
 			projectile_container = get_parent()
-		_play_animation("fire")
 		proj_instance.initialize(projectile_container, fire_position.global_position, fire_position.global_position.direction_to(target.global_position))
 
 func _can_see_target()->bool:
@@ -42,6 +41,7 @@ func _can_see_target()->bool:
 		return false
 	raycast.set_cast_to(to_local(target.global_position))
 	raycast.force_raycast_update()
+#	TODO: Acá hay un bug que no se cómo solucionar
 	return raycast.is_colliding() && raycast.get_collider() == target
 
 
